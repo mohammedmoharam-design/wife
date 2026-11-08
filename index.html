@@ -1,0 +1,522 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<title>For Someone Special ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: #000;
+    color: white;
+    font-family: Georgia, serif;
+    overflow: hidden;
+}
+
+/* LOGIN SCREEN */
+
+#login {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    padding: 25px;
+}
+
+.login-title {
+    font-size: 27px;
+    color: #ff9fc7;
+    text-shadow: 0 0 15px #ff408b;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#password {
+    width: 250px;
+    max-width: 100%;
+    padding: 15px;
+    border: 1px solid #ff579b;
+    border-radius: 30px;
+    background: #101010;
+    color: white;
+    text-align: center;
+    font-size: 17px;
+    outline: none;
+}
+
+#password:focus {
+    box-shadow: 0 0 15px #ff408b;
+}
+
+#openBtn {
+    margin-top: 18px;
+    padding: 13px 35px;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    background: linear-gradient(45deg, #ff2878, #ff75ad);
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff2878;
+}
+
+#error {
+    margin-top: 15px;
+    color: #ff75ad;
+}
+
+/* MAIN SCREEN */
+
+#main {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.heart-container {
+    width: min(95vw, 600px);
+    position: relative;
+    z-index: 2;
+}
+
+svg {
+    display: block;
+    width: 100%;
+    overflow: visible;
+}
+
+/* HEART SHAPE */
+
+.heart-outline {
+    fill: none;
+    stroke: #ff559b;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 1800;
+    stroke-dashoffset: 1800;
+    filter:
+        drop-shadow(0 0 5px #ff3985)
+        drop-shadow(0 0 15px #ff3985);
+}
+
+.draw-heart {
+    animation: draw 5s ease forwards;
+}
+
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* WORDS INSIDE HEART */
+
+.heart-pattern {
+    opacity: 0;
+    filter: drop-shadow(0 0 3px #ff6ca5);
+}
+
+.show-pattern {
+    animation: showPattern 2s ease forwards;
+    animation-delay: 3.5s;
+}
+
+@keyframes showPattern {
+    to { opacity: 1; }
+}
+
+/* CENTER NAME */
+
+.center-name {
+    opacity: 0;
+    fill: #ffe5f0;
+    font-size: 35px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 8px #ff75ad)
+            drop-shadow(0 0 20px #ff2878);
+}
+
+.show-name {
+    animation: nameAppear 2s ease forwards;
+    animation-delay: 4.8s;
+}
+
+@keyframes nameAppear {
+    from {
+        opacity: 0;
+        transform: scale(.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* MESSAGE */
+
+.message {
+    opacity: 0;
+    color: #ffb3d0;
+    font-size: clamp(15px, 4vw, 20px);
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #ff408b;
+    margin-top: -10px;
+    text-align: center;
+}
+
+.show-message {
+    animation: showMessage 2s forwards;
+    animation-delay: 6s;
+}
+
+@keyframes showMessage {
+    to { opacity: 1; }
+}
+
+/* FALLING ROSES */
+
+.falling {
+    position: fixed;
+    top: -60px;
+    z-index: 5;
+    pointer-events: none;
+    animation: fall linear forwards;
+    user-select: none;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-5vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% { opacity: 1; }
+
+    100% {
+        transform: translateY(115vh) rotate(600deg);
+        opacity: 0;
+    }
+}
+
+/* GLOWING BACKGROUND PARTICLES */
+
+.particle {
+    position: fixed;
+    color: #ff438b;
+    pointer-events: none;
+    z-index: 1;
+    text-shadow: 0 0 10px #ff438b;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) scale(.5);
+        opacity: 0;
+    }
+    20% { opacity: .8; }
+    to {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .center-name {
+        font-size: 29px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .falling, .particle {
+        animation-duration: 12s;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+
+<div id="login">
+
+    <h1 class="login-title">
+        A Little Surprise ❤️
+    </h1>
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Enter Password"
+        autocomplete="off"
+    >
+
+    <button id="openBtn" onclick="unlock()">
+        Open Your Surprise ❤️
+    </button>
+
+    <p id="error"></p>
+
+</div>
+
+
+<!-- SURPRISE SCREEN -->
+
+<div id="main">
+
+    <div class="heart-container">
+
+        <svg viewBox="0 0 500 500"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+
+                <!-- OUTER HEART -->
+
+                <path id="outerHeart"
+                d="
+                M250 455
+                C215 405 40 290 40 155
+                C40 25 190 5 250 115
+                C310 5 460 25 460 155
+                C460 290 285 405 250 455 Z
+                "/>
+
+                <!-- INNER HEART -->
+
+                <path id="innerHeart"
+                d="
+                M250 395
+                C220 360 95 270 95 170
+                C95 85 190 60 250 155
+                C310 60 405 85 405 170
+                C405 270 280 360 250 395 Z
+                "/>
+
+                <!-- HEART BORDER MASK -->
+
+                <mask id="heartMask">
+                    <rect width="500" height="500"
+                          fill="black"/>
+
+                    <use href="#outerHeart"
+                         fill="white"/>
+
+                    <use href="#innerHeart"
+                         fill="black"/>
+                </mask>
+
+                <!-- REPEATING WORDS -->
+
+                <pattern id="lovePattern"
+                         width="230"
+                         height="45"
+                         patternUnits="userSpaceOnUse">
+
+                    <text x="0" y="15"
+                          font-size="15"
+                          fill="#ff8ab9"
+                          font-weight="bold">
+                        I LOVE YOU ♥ I LOVE YOU
+                    </text>
+
+                    <text x="18" y="36"
+                          font-size="15"
+                          fill="#ffb0ce"
+                          font-weight="bold">
+                        ♥ I LOVE YOU ♥ I LOVE YOU
+                    </text>
+
+                </pattern>
+
+            </defs>
+
+            <!-- WORDS FILL THE HEART BORDER -->
+
+            <rect width="500" height="500"
+                  fill="url(#lovePattern)"
+                  mask="url(#heartMask)"
+                  class="heart-pattern"
+                  id="pattern"/>
+
+            <!-- DRAWING OUTLINE -->
+
+            <use href="#outerHeart"
+                 class="heart-outline"
+                 id="outline"/>
+
+            <!-- CENTER NAME -->
+
+            <text x="250" y="260"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                  class="center-name"
+                  id="personName">
+                YOUR NAME
+            </text>
+
+        </svg>
+
+    </div>
+
+    <p class="message" id="message">
+        Made with love, just for you ❤️
+    </p>
+
+</div>
+
+
+<script>
+
+/* =================================
+   CUSTOMIZE YOUR WEBSITE HERE
+================================= */
+
+const SETTINGS = {
+    password: "142010",
+    name: "MENNA",
+    message: "Made with love, just for you ❤️
+MADE BY UR FUTURE HUSBAND💍"
+};
+
+/* =================================
+   UNLOCK WEBSITE
+================================= */
+
+function unlock() {
+
+    const entered =
+        document.getElementById("password").value;
+
+    if (entered === SETTINGS.password) {
+
+        document.getElementById("login").style.display = "none";
+
+        document.getElementById("main").style.display = "flex";
+
+        document.getElementById("personName").textContent =
+            SETTINGS.name;
+
+        document.getElementById("message").textContent =
+            SETTINGS.message;
+
+        document.getElementById("outline").classList.add("draw-heart");
+
+        document.getElementById("pattern").classList.add("show-pattern");
+
+        document.getElementById("personName").classList.add("show-name");
+
+        document.getElementById("message").classList.add("show-message");
+
+        startRoses();
+        startParticles();
+
+    } else {
+
+        document.getElementById("error").textContent =
+            "Wrong Password ❤️ Try Again";
+
+    }
+}
+
+/* ENTER KEY */
+
+document.getElementById("password").addEventListener(
+    "keydown", function(event) {
+        if (event.key === "Enter") {
+            unlock();
+        }
+    }
+);
+
+/* =================================
+   FALLING ROSES AND PETALS
+================================= */
+
+function startRoses() {
+
+    const flowers = ["🌹", "🌹", "🌸", "🌺", "🌹"];
+
+    setInterval(() => {
+
+        const flower = document.createElement("div");
+
+        flower.className = "falling";
+
+        flower.textContent =
+            flowers[Math.floor(Math.random() * flowers.length)];
+
+        flower.style.left = Math.random() * 100 + "vw";
+
+        flower.style.fontSize =
+            (20 + Math.random() * 22) + "px";
+
+        const duration = 5 + Math.random() * 5;
+
+        flower.style.animationDuration = duration + "s";
+
+        document.body.appendChild(flower);
+
+        setTimeout(() => flower.remove(), duration * 1000);
+
+    }, 350);
+}
+
+/* =================================
+   BACKGROUND HEART PARTICLES
+================================= */
+
+function startParticles() {
+
+    setInterval(() => {
+
+        const particle = document.createElement("div");
+
+        particle.className = "particle";
+
+        particle.textContent = "♥";
+
+        particle.style.left = Math.random() * 100 + "vw";
+
+        particle.style.bottom = "-20px";
+
+        particle.style.fontSize =
+            (10 + Math.random() * 16) + "px";
+
+        const duration = 5 + Math.random() * 5;
+
+        particle.style.animationDuration = duration + "s";
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => particle.remove(), duration * 1000);
+
+    }, 600);
+}
+
+</script>
+
+</body>
+</html>
